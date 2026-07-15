@@ -1,0 +1,53 @@
+{
+  "manifest_version": "1.0",
+  "asset": {
+    "asset_id": "private-vault-hero",
+    "version": "0.1.0",
+    "candidate_id": "candidate-03"
+  },
+  "scene_spec": {
+    "version": "1.0",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "style": {
+    "id": "obsidian-gold",
+    "version": "1.0"
+  },
+  "transformation_mode": "brand-adaptation",
+  "references": [
+    {
+      "id": "ref-style-001",
+      "roles": ["style"]
+    },
+    {
+      "id": "ref-geometry-001",
+      "roles": ["geometry"]
+    }
+  ],
+  "execution": {
+    "tool": "image-generation-tool",
+    "model": "recorded-at-runtime",
+    "mode": "reference-conditioned",
+    "iterations": 3,
+    "limitations": []
+  },
+  "output": {
+    "path": "output/private-vault-hero-v0.1.0.png",
+    "width_px": 1024,
+    "height_px": 1024,
+    "file_format": "png",
+    "background_mode": "opaque",
+    "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "qa": {
+    "score": 94,
+    "decision": "accept",
+    "critical_defects": [],
+    "diagnostic_codes": []
+  },
+  "delivery": {
+    "visible_to_user": true,
+    "response_non_empty": true,
+    "delivered_at": "2026-07-15T10:15:00Z"
+  }
+}
