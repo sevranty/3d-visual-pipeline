@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sevranty/finuslugi-3d-visual-pipeline/schemas/scene-spec.schema.json",
+  "title": "Finuslugi Scene Specification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "spec_version",
+    "task",
+    "transformation_mode",
+    "subject",
+    "references",
+    "locks",
+    "composition",
+    "camera",
+    "visual",
+    "constraints",
+    "output"
+  ],
+  "properties": {
+    "spec_version": {
+      "const": "1.0"
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["message", "product_advantage", "metaphor", "target_channel"],
+      "properties": {
+        "message": {"type": "string", "minLength": 1},
+        "product_advantage": {"type": "string", "minLength": 1},
+        "metaphor": {"type": "string", "minLength": 1},
+        "target_channel": {"type": "string", "minLength": 1}
+      }
+    },
+    "transformation_mode": {
+      "enum": [
+        "style-transfer",
+        "reinterpretation",
+        "composition-transfer",
+        "object-preservation",
+        "brand-adaptation",
+        "variation",
+        "reference-synthesis",
+        "local-correction"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["main_object", "action_or_state", "mandatory_features", "supporting_elements"],
+      "properties": {
+        "main_object": {"type": "string", "minLength": 1},
+        "action_or_state": {"type": "string", "minLength": 1},
+        "mandatory_features": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "supporting_elements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "count", "purpose"],
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "count": {"type": "integer", "minimum": 0},
+              "purpose": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "roles", "take", "do_not_take"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "roles": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "enum": [
+                "style",
+                "subject",
+                "geometry",
+                "material",
+                "camera",
+                "composition-map",
+                "editable-source",
+                "identity"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "take": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          },
+          "do_not_take": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "locks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["semantic", "identity", "composition_level", "style"],
+      "properties": {
+        "semantic": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "identity": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "composition_level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "style": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "version"],
+          "properties": {
+            "id": {"enum": ["modern-flat", "silver-gold", "obsidian-gold"]},
+            "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"}
+          }
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["aspect_ratio", "main_object_position", "frame_coverage", "depth_order", "negative_space"],
+      "properties": {
+        "aspect_ratio": {"type": "string", "pattern": "^[1-9][0-9]*:[1-9][0-9]*$"},
+        "main_object_position": {"type": "string", "minLength": 1},
+        "frame_coverage": {"type": "number", "minimum": 0.05, "maximum": 0.95},
+        "depth_order": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "negative_space": {"type": "string", "minLength": 1}
+      }
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["viewpoint", "perspective", "crop"],
+      "properties": {
+        "viewpoint": {"type": "string", "minLength": 1},
+        "perspective": {"type": "string", "minLength": 1},
+        "crop": {"type": "string", "minLength": 1}
+      }
+    },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["geometry", "materials", "lighting", "palette", "background", "detail_level"],
+      "properties": {
+        "geometry": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "materials": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "lighting": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "palette": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "background": {"type": "string", "minLength": 1},
+        "detail_level": {"enum": ["icon-grade", "standard", "hero", "board-ready"]}
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preserve", "change", "exclude"],
+      "properties": {
+        "preserve": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "change": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "exclude": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width_px", "height_px", "background_mode", "file_format", "text_added_after_generation", "logo_added_after_generation"],
+      "properties": {
+        "width_px": {"type": "integer", "minimum": 512},
+        "height_px": {"type": "integer", "minimum": 512},
+        "background_mode": {"enum": ["opaque", "transparent"]},
+        "file_format": {"enum": ["png", "webp", "jpg"]},
+        "text_added_after_generation": {"type": "boolean"},
+        "logo_added_after_generation": {"type": "boolean"}
+      }
+    }
+  }
+}
