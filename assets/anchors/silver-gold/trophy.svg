@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Silver Gold trophy regression fixture">
+  <title>Silver Gold trophy regression fixture</title>
+  <rect width="512" height="512" fill="#171A1F"/>
+  <defs><linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E7EAED"/><stop offset=".5" stop-color="#8D949A"/><stop offset="1" stop-color="#C7CDD2"/></linearGradient><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F8DC83"/><stop offset="1" stop-color="#C7A256"/></linearGradient></defs>
+  <path d="M176 112 H336 V196 C336 270 304 310 256 326 C208 310 176 270 176 196 Z" fill="url(#silver)"/>
+  <path d="M176 146 H126 V194 C126 244 164 270 202 270" fill="none" stroke="url(#silver)" stroke-width="22"/>
+  <path d="M336 146 H386 V194 C386 244 348 270 310 270" fill="none" stroke="url(#silver)" stroke-width="22"/>
+  <rect x="238" y="320" width="36" height="78" fill="url(#silver)"/>
+  <path d="M190 398 H322 L344 430 H168 Z" fill="url(#silver)"/>
+  <path d="M230 166 L256 140 L282 166 L256 194 Z" fill="url(#gold)"/>
+</svg>
