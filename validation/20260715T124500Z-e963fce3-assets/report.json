@@ -1,0 +1,23 @@
+{
+  "report_version": "1.0",
+  "run_id": "20260715T124500Z-e963fce3-assets",
+  "timestamp": "2026-07-15T12:45:00Z",
+  "head_sha": "e963fce374a34a0b5856b9f910240d3b7ab3ccfe",
+  "method": "manual-deterministic-exact-head",
+  "status": "pass",
+  "passed_checks": [
+    "asset-policy",
+    "asset-collections",
+    "asset-entries",
+    "asset-inventory",
+    "logo-variants",
+    "asset-history",
+    "manifest-checksum-consistency",
+    "relative-links",
+    "asset-eval-cases"
+  ],
+  "warnings": [
+    "No hosted GitHub Actions run was created for this branch; deterministic checks were reproduced manually from the exact GitHub file contents."
+  ],
+  "errors": []
+}
