@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Anti-pattern red overload">
+  <title>Anti-pattern red overload</title>
+  <rect width="512" height="512" fill="#FF0508"/>
+  <rect x="76" y="76" width="360" height="360" rx="54" fill="#C90003"/>
+  <circle cx="256" cy="256" r="104" fill="#FF6A6C"/>
+  <path d="M160 330 L232 244 L280 282 L356 168" fill="none" stroke="#FFFFFF" stroke-width="30"/>
+</svg>
