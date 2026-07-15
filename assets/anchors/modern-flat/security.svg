@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Modern Flat security regression fixture">
+  <title>Modern Flat security regression fixture</title>
+  <rect width="512" height="512" fill="#EEF2F5"/>
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#315B85"/><stop offset="1" stop-color="#102A43"/></linearGradient></defs>
+  <path d="M256 92 L388 142 V246 C388 332 334 392 256 426 C178 392 124 332 124 246 V142 Z" fill="url(#s)"/>
+  <rect x="196" y="226" width="120" height="104" rx="22" fill="#F7B65C"/>
+  <path d="M218 226 V196 C218 146 294 146 294 196 V226" fill="none" stroke="#F4F6F8" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="256" cy="272" r="15" fill="#FF0508"/>
+  <path d="M256 287 V310" stroke="#102A43" stroke-width="12" stroke-linecap="round"/>
+</svg>
