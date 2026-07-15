@@ -11,17 +11,25 @@ All notable changes to this repository are documented here.
 - Fallback and stop rules for missing edit, mask edit, multi-reference, identity preservation, transparency, exact dimensions, upscale, and delivery capabilities.
 - Runtime capability JSON Schema with valid and invalid fixtures.
 - Runtime behavior cases for ChatGPT image generation and Nano Banana-style execution.
+- Governed asset registry version `2.0` with stable IDs, semantic versions, collection boundaries, rights states, approval states, role restrictions, and public-distribution gates.
+- Append-only asset manifest history.
+- Canonical asset governance reference, registry schema, validator, and behavior cases.
+- Controlled collections for brand assets, approved anchors, anti-patterns, and exploratory quarantine.
 
 ### Changed
 
 - Output manifest version `1.1` records runtime profile, adapter, requested and selected modes, required capabilities, fallback decision, and limitations.
-- Canonical skill now routes through a capability gate before execution.
+- Canonical skill now routes through capability and governed-asset gates before execution.
+- Owner-supplied Finuslugi logos are explicitly approved for this public project repository while granting no downstream trademark rights.
 
 ### Governance
 
 - Unknown capabilities are treated as unsupported when mandatory.
 - Hidden execution degradation is prohibited.
 - Tool success without visible user delivery is `DELIVERY_MISSING`.
+- Unregistered visual files and generated logos are rejected.
+- Exploratory references cannot become canonical style sources implicitly.
+- Public golden assets require approval, cleared rights, and public-distribution approval.
 
 ## 0.1.0 - 2026-07-15
 
@@ -56,6 +64,4 @@ Status: draft architecture and canonical-skill baseline.
 
 - No approved visual golden set is included yet.
 - Visual regression evidence has not been produced yet.
-- Runtime capability adapters are not implemented yet.
-- Public-distribution rights for binary brand assets remain pending review.
 - Installation smoke testing and first release gates remain pending.
