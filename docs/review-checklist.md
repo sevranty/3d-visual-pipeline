@@ -4,7 +4,7 @@ Review the exact Draft PR HEAD. Any new commit invalidates the review evidence a
 
 ## Architecture
 
-- [ ] Plugin manifest points to `../skills/` from this documentation file and to `./skills/` in `.codex-plugin/plugin.json`.
+- [ ] Plugin manifest points to the repository-level `../skills/` directory using JSON value "./skills/".
 - [ ] Runtime rules live in one canonical `SKILL.md`.
 - [ ] Detailed rules live in canonical reference files.
 - [ ] Machine contracts live in schemas.
