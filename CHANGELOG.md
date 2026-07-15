@@ -2,6 +2,27 @@
 
 All notable changes to this repository are documented here.
 
+## Unreleased
+
+### Added
+
+- Tool-agnostic runtime capability vocabulary and versioned capability profiles.
+- Explicit routing from Scene Specification roles to generator operations.
+- Fallback and stop rules for missing edit, mask edit, multi-reference, identity preservation, transparency, exact dimensions, upscale, and delivery capabilities.
+- Runtime capability JSON Schema with valid and invalid fixtures.
+- Runtime behavior cases for ChatGPT image generation and Nano Banana-style execution.
+
+### Changed
+
+- Output manifest version `1.1` records runtime profile, adapter, requested and selected modes, required capabilities, fallback decision, and limitations.
+- Canonical skill now routes through a capability gate before execution.
+
+### Governance
+
+- Unknown capabilities are treated as unsupported when mandatory.
+- Hidden execution degradation is prohibited.
+- Tool success without visible user delivery is `DELIVERY_MISSING`.
+
 ## 0.1.0 - 2026-07-15
 
 Status: draft architecture and canonical-skill baseline.
