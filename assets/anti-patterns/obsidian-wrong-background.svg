@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Anti-pattern obsidian wrong background">
+  <title>Anti-pattern obsidian wrong background</title>
+  <rect width="512" height="512" fill="#39424E"/>
+  <defs><pattern id="stone" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M0 16 L16 0 M16 32 L32 16" stroke="#7A8794" stroke-width="6"/></pattern></defs>
+  <path d="M116 116 H396 V396 H116 Z" fill="#242A30"/>
+  <path d="M136 136 H376 V376 H136 Z" fill="url(#stone)"/>
+  <circle cx="256" cy="256" r="70" fill="#FFD700"/>
+  <ellipse cx="256" cy="420" rx="160" ry="22" fill="#000000" opacity=".45"/>
+</svg>
