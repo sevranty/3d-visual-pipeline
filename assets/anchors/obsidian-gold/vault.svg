@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Obsidian Gold vault regression fixture">
+  <title>Obsidian Gold vault regression fixture</title>
+  <rect width="512" height="512" fill="#000000"/>
+  <defs><linearGradient id="obs" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#242424"/><stop offset="1" stop-color="#0B0B0B"/></linearGradient><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFD700"/><stop offset="1" stop-color="#C7A256"/></linearGradient></defs>
+  <path d="M126 118 L360 92 L400 132 L382 382 L148 412 L110 370 Z" fill="url(#obs)"/>
+  <path d="M170 146 L330 132 L346 166 L332 340 L172 358 L156 326 Z" fill="#111111" stroke="#2A2A2A" stroke-width="8"/>
+  <circle cx="254" cy="246" r="64" fill="none" stroke="url(#gold)" stroke-width="18"/>
+  <circle cx="254" cy="246" r="14" fill="#FFD700"/>
+  <path d="M254 182 V214 M254 278 V310 M190 246 H222 M286 246 H318" stroke="#C7A256" stroke-width="12" stroke-linecap="round"/>
+</svg>
