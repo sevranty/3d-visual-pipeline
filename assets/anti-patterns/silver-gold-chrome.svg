@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Anti-pattern chrome and gold overload">
+  <title>Anti-pattern chrome and gold overload</title>
+  <rect width="512" height="512" fill="#111318"/>
+  <defs><linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FFFFFF"/><stop offset=".2" stop-color="#343A40"/><stop offset=".4" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#23272B"/><stop offset=".8" stop-color="#FFFFFF"/><stop offset="1" stop-color="#4B5156"/></linearGradient></defs>
+  <circle cx="256" cy="256" r="176" fill="#FFD700"/>
+  <circle cx="256" cy="256" r="112" fill="url(#chrome)"/>
+  <circle cx="220" cy="212" r="30" fill="#FFFFFF" opacity=".9"/>
+</svg>
