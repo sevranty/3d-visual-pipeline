@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Obsidian Gold key regression fixture">
+  <title>Obsidian Gold key regression fixture</title>
+  <rect width="512" height="512" fill="#000000"/>
+  <defs><linearGradient id="obs" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#252525"/><stop offset="1" stop-color="#080808"/></linearGradient><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFD700"/><stop offset="1" stop-color="#C7A256"/></linearGradient></defs>
+  <path d="M102 250 C102 170 166 108 246 108 C326 108 390 170 390 250 C390 330 326 392 246 392 C166 392 102 330 102 250 Z" fill="url(#obs)"/>
+  <circle cx="222" cy="230" r="70" fill="#0D0D0D" stroke="url(#gold)" stroke-width="18"/>
+  <path d="M272 280 L398 402" stroke="#181818" stroke-width="42" stroke-linecap="round"/>
+  <path d="M342 346 L380 308 M374 378 L414 338" stroke="url(#gold)" stroke-width="18" stroke-linecap="round"/>
+</svg>
