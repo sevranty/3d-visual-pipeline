@@ -1,0 +1,78 @@
+{
+  "eval_version": "1.0",
+  "cases": [
+    {
+      "id": "AS-001",
+      "name": "Base logo on light background",
+      "kind": "positive",
+      "asset_id": "finuslugi-logo-base",
+      "expected": [
+        "asset is active, approved, rights-cleared, and public-distribution approved",
+        "background is white or light",
+        "logo is added after generation without redraw or recoloring"
+      ]
+    },
+    {
+      "id": "AS-002",
+      "name": "Inverted logo on dark background",
+      "kind": "positive",
+      "asset_id": "finuslugi-logo-inverted",
+      "expected": [
+        "asset is active, approved, rights-cleared, and public-distribution approved",
+        "background is red or dark",
+        "logo is added after generation without distortion"
+      ]
+    },
+    {
+      "id": "AS-003",
+      "name": "Generated Finuslugi logo rejected",
+      "kind": "negative",
+      "expected": [
+        "LOGO_ERROR is critical",
+        "generated logo is never admitted to brand-assets",
+        "candidate is replaced with the canonical post-production asset"
+      ]
+    },
+    {
+      "id": "AS-004",
+      "name": "Exploratory reference blocked as style source",
+      "kind": "negative",
+      "expected": [
+        "exploratory collection is quarantine-only",
+        "the reference cannot receive canonical style role",
+        "separate approval and rights review are required"
+      ]
+    },
+    {
+      "id": "AS-005",
+      "name": "Pending rights block public golden admission",
+      "kind": "negative",
+      "expected": [
+        "public golden admission requires approved, cleared, and public-distribution approved states",
+        "pending rights produces a stop decision",
+        "file remains candidate or quarantine"
+      ]
+    },
+    {
+      "id": "AS-006",
+      "name": "Asset replacement preserves history",
+      "kind": "positive",
+      "expected": [
+        "replacement receives a new semantic version and checksum",
+        "supersedes identifies the previous asset",
+        "previous entry is deprecated before removal",
+        "append-only manifest history records both checksums"
+      ]
+    },
+    {
+      "id": "AS-007",
+      "name": "Unregistered visual binary rejected",
+      "kind": "negative",
+      "expected": [
+        "validator discovers the file",
+        "missing manifest entry fails validation",
+        "merge is blocked until provenance and checksum are registered"
+      ]
+    }
+  ]
+}
