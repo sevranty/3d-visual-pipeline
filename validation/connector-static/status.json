@@ -1,0 +1,21 @@
+{
+  "record_version": "1.0",
+  "method": "github-connector-static-inspection",
+  "status": "blocked",
+  "reason": "The execution environment could not resolve github.com to clone or download the branch, so the repository validator was not executed against the exact branch filesystem.",
+  "validated": [
+    "branch is ahead of main",
+    "required architecture and canonical skill files are present in the branch diff",
+    "critical JSON files were readable through the GitHub API",
+    "brand binary files are readable as PNG through the GitHub API",
+    "Draft PR lifecycle constraints are documented"
+  ],
+  "not_validated": [
+    "Python syntax execution",
+    "full relative-link traversal",
+    "asset SHA-256 comparison against checked-out branch files",
+    "positive and negative fixture execution",
+    "visual regression"
+  ],
+  "required_next_command": "python3 skills/finuslugi-3d-visual-pipeline/scripts/validate_repository.py"
+}
