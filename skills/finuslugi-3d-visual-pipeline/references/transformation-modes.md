@@ -1,6 +1,6 @@
 # Transformation Modes
 
-Choose one primary mode before building the Scene Specification.
+Choose exactly one primary mode before building the Scene Specification.
 
 ## `style-transfer`
 
@@ -25,6 +25,10 @@ Preserve the source meaning. Rebuild the image as a new Finuslugi brand asset un
 ## `variation`
 
 Preserve the general scene and style. Change local details, camera, supporting objects, or pose without changing the message.
+
+## `reference-synthesis`
+
+Combine multiple references with non-overlapping roles into one new scene. One source may own style, another geometry, another composition, and another identity. Conflicting ownership of the same role must be resolved before generation.
 
 ## `local-correction`
 
