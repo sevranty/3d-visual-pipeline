@@ -89,12 +89,14 @@
               "enum": [
                 "style",
                 "subject",
+                "identity",
                 "geometry",
-                "material",
+                "composition",
                 "camera",
-                "composition-map",
-                "editable-source",
-                "identity"
+                "material",
+                "palette",
+                "pose",
+                "editable-source"
               ]
             },
             "uniqueItems": true
