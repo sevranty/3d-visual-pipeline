@@ -56,6 +56,11 @@ jobs:
           python3 skills/finuslugi-3d-visual-pipeline/scripts/validate_runtime_contract.py \
             --report validation/runtime/runtime-report.json
 
+      - name: Run asset registry validator
+        run: |
+          python3 skills/finuslugi-3d-visual-pipeline/scripts/validate_asset_registry.py \
+            --report validation/runtime/asset-report.json
+
       - name: Publish success status
         if: success()
         env:
@@ -66,7 +71,7 @@ jobs:
             "repos/${{ github.repository }}/statuses/$SOURCE_SHA" \
             -f state=success \
             -f context=f3d/validation \
-            -f description="Repository and runtime validators passed"
+            -f description="Repository, runtime, and asset validators passed"
 
       - name: Publish failure status
         if: failure()
@@ -78,7 +83,7 @@ jobs:
             "repos/${{ github.repository }}/statuses/$SOURCE_SHA" \
             -f state=failure \
             -f context=f3d/validation \
-            -f description="Repository or runtime validator failed"
+            -f description="Repository, runtime, or asset validator failed"
 
       - name: Upload validation evidence
         if: always()
@@ -88,4 +93,5 @@ jobs:
           path: |
             validation/runtime/report.json
             validation/runtime/runtime-report.json
+            validation/runtime/asset-report.json
           if-no-files-found: error
