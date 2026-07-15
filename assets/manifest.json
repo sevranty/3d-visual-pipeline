@@ -1,105 +1,31 @@
 {
   "registry_version": "2.0",
-  "updated_at": "2026-07-15T12:35:00Z",
-  "policy": {
-    "default_rights_status": "blocked",
-    "unregistered_binary_policy": "reject",
-    "generated_logo_policy": "reject",
-    "exploratory_as_style_source": "reject",
-    "public_golden_requires": [
-      "approval_status=approved",
-      "rights_status=cleared",
-      "public_distribution_status=approved"
-    ]
-  },
+  "updated_at": "2026-07-15T13:00:00Z",
+  "policy": {"default_rights_status":"blocked","unregistered_binary_policy":"reject","generated_logo_policy":"reject","exploratory_as_style_source":"reject","public_golden_requires":["approval_status=approved","rights_status=cleared","public_distribution_status=approved"]},
   "collections": [
-    {
-      "collection_id": "brand-assets",
-      "path": "assets/brand/",
-      "purpose": "Canonical brand assets and usage rules.",
-      "admission_status": "controlled",
-      "production_eligible": true
-    },
-    {
-      "collection_id": "anchors-modern-flat",
-      "path": "assets/anchors/modern-flat/",
-      "purpose": "Approved Modern Flat regression anchors only.",
-      "admission_status": "review-required",
-      "production_eligible": true
-    },
-    {
-      "collection_id": "anchors-silver-gold",
-      "path": "assets/anchors/silver-gold/",
-      "purpose": "Approved Silver-Gold regression anchors only.",
-      "admission_status": "review-required",
-      "production_eligible": true
-    },
-    {
-      "collection_id": "anchors-obsidian-gold",
-      "path": "assets/anchors/obsidian-gold/",
-      "purpose": "Approved Obsidian Gold regression anchors only.",
-      "admission_status": "review-required",
-      "production_eligible": true
-    },
-    {
-      "collection_id": "anti-patterns",
-      "path": "assets/anti-patterns/",
-      "purpose": "Rejected fixtures linked to diagnostic codes.",
-      "admission_status": "review-required",
-      "production_eligible": false
-    },
-    {
-      "collection_id": "exploratory",
-      "path": "assets/exploratory/",
-      "purpose": "Research references that are never canonical style sources.",
-      "admission_status": "quarantine",
-      "production_eligible": false
-    }
+    {"collection_id":"brand-assets","path":"assets/brand/","purpose":"Canonical brand assets and usage rules.","admission_status":"controlled","production_eligible":true},
+    {"collection_id":"anchors-modern-flat","path":"assets/anchors/modern-flat/","purpose":"Approved Modern Flat regression anchors only.","admission_status":"review-required","production_eligible":true},
+    {"collection_id":"anchors-silver-gold","path":"assets/anchors/silver-gold/","purpose":"Approved Silver-Gold regression anchors only.","admission_status":"review-required","production_eligible":true},
+    {"collection_id":"anchors-obsidian-gold","path":"assets/anchors/obsidian-gold/","purpose":"Approved Obsidian Gold regression anchors only.","admission_status":"review-required","production_eligible":true},
+    {"collection_id":"anti-patterns","path":"assets/anti-patterns/","purpose":"Rejected fixtures linked to diagnostic codes.","admission_status":"review-required","production_eligible":false},
+    {"collection_id":"exploratory","path":"assets/exploratory/","purpose":"Research references that are never canonical style sources.","admission_status":"quarantine","production_eligible":false}
   ],
   "assets": [
-    {
-      "asset_id": "finuslugi-logo-base",
-      "asset_version": "1.0.0",
-      "path": "assets/finuslugi-base.png",
-      "collection_id": "brand-assets",
-      "type": "brand-logo",
-      "variant": "base",
-      "lifecycle_status": "active",
-      "approval_status": "approved",
-      "rights_status": "cleared",
-      "public_distribution_status": "approved",
-      "license_scope": "Project repository use; no trademark rights granted to downstream users.",
-      "source": "Owner-supplied project asset Finuslugi_base_4x.png.",
-      "owner": "Finuslugi / rights holder",
-      "allowed_backgrounds": ["white", "light"],
-      "allowed_roles": ["post-production-logo", "repository-documentation", "plugin-interface"],
-      "prohibited_roles": ["generative-reference", "generated-logo", "style-anchor"],
-      "source_note": "Use the original file without redraw, distortion, recoloring, or generative reconstruction.",
-      "sha256": "bec5c6e658f0a9831ad833b630237ccd39791a79edfb15e35ca9cc7e836520f9",
-      "supersedes": null,
-      "deprecated_at": null
-    },
-    {
-      "asset_id": "finuslugi-logo-inverted",
-      "asset_version": "1.0.0",
-      "path": "assets/finuslugi-inverted.png",
-      "collection_id": "brand-assets",
-      "type": "brand-logo",
-      "variant": "inverted",
-      "lifecycle_status": "active",
-      "approval_status": "approved",
-      "rights_status": "cleared",
-      "public_distribution_status": "approved",
-      "license_scope": "Project repository use; no trademark rights granted to downstream users.",
-      "source": "Owner-supplied project asset Finuslugi_inverted_4x.png.",
-      "owner": "Finuslugi / rights holder",
-      "allowed_backgrounds": ["red", "dark"],
-      "allowed_roles": ["post-production-logo", "repository-documentation", "plugin-interface"],
-      "prohibited_roles": ["generative-reference", "generated-logo", "style-anchor"],
-      "source_note": "Use the original file without redraw, distortion, recoloring, or generative reconstruction.",
-      "sha256": "daf24226f671f6c63effa6a64933c59a6310add90f196d9d88b3e045c1bfa0d6",
-      "supersedes": null,
-      "deprecated_at": null
-    }
+    {"asset_id":"finuslugi-logo-base","asset_version":"1.0.0","path":"assets/finuslugi-base.png","collection_id":"brand-assets","type":"brand-logo","variant":"base","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Project repository use; no trademark rights granted to downstream users.","source":"Owner-supplied project asset Finuslugi_base_4x.png.","owner":"Finuslugi / rights holder","allowed_backgrounds":["white","light"],"allowed_roles":["post-production-logo","repository-documentation","plugin-interface"],"prohibited_roles":["generative-reference","generated-logo","style-anchor"],"source_note":"Use the original file without redraw, distortion, recoloring, or generative reconstruction.","sha256":"bec5c6e658f0a9831ad833b630237ccd39791a79edfb15e35ca9cc7e836520f9","supersedes":null,"deprecated_at":null},
+    {"asset_id":"finuslugi-logo-inverted","asset_version":"1.0.0","path":"assets/finuslugi-inverted.png","collection_id":"brand-assets","type":"brand-logo","variant":"inverted","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Project repository use; no trademark rights granted to downstream users.","source":"Owner-supplied project asset Finuslugi_inverted_4x.png.","owner":"Finuslugi / rights holder","allowed_backgrounds":["red","dark"],"allowed_roles":["post-production-logo","repository-documentation","plugin-interface"],"prohibited_roles":["generative-reference","generated-logo","style-anchor"],"source_note":"Use the original file without redraw, distortion, recoloring, or generative reconstruction.","sha256":"daf24226f671f6c63effa6a64933c59a6310add90f196d9d88b3e045c1bfa0d6","supersedes":null,"deprecated_at":null},
+    {"asset_id":"modern-flat-growth","asset_version":"1.0.0","path":"assets/anchors/modern-flat/growth.svg","collection_id":"anchors-modern-flat","type":"style-anchor","variant":"growth","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"1290ef9753907b8fc4da6da792352d592c91297387bed7c6ea2f418699e0bf29","supersedes":null,"deprecated_at":null},
+    {"asset_id":"modern-flat-mobility","asset_version":"1.0.0","path":"assets/anchors/modern-flat/mobility.svg","collection_id":"anchors-modern-flat","type":"style-anchor","variant":"mobility","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"8a4960e3d4ce4e77ec6a879f1fd9dea006a6e2d8b09a2e7acb7fafb2d771b6a0","supersedes":null,"deprecated_at":null},
+    {"asset_id":"modern-flat-security","asset_version":"1.0.0","path":"assets/anchors/modern-flat/security.svg","collection_id":"anchors-modern-flat","type":"style-anchor","variant":"security","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"1d5890a90990847eaf68333d57074ddb8010e7baf7cb7a7b633aeec531019bf7","supersedes":null,"deprecated_at":null},
+    {"asset_id":"silver-gold-trophy","asset_version":"1.0.0","path":"assets/anchors/silver-gold/trophy.svg","collection_id":"anchors-silver-gold","type":"style-anchor","variant":"trophy","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"dc4e6568032ff39aeb54629e2631dafc87050be2e4035fee07747badafce349e","supersedes":null,"deprecated_at":null},
+    {"asset_id":"silver-gold-shield","asset_version":"1.0.0","path":"assets/anchors/silver-gold/shield.svg","collection_id":"anchors-silver-gold","type":"style-anchor","variant":"shield","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"bd042ce3e4a5c12915d31808c597232d40f9d065b141e2e8e9cb39334140aa2f","supersedes":null,"deprecated_at":null},
+    {"asset_id":"silver-gold-coin","asset_version":"1.0.0","path":"assets/anchors/silver-gold/coin.svg","collection_id":"anchors-silver-gold","type":"style-anchor","variant":"coin","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"7a95725dd757f5fb5a94e3081ea6bf4c1b37761ee08fb2f0d81702d2ca6fb7b2","supersedes":null,"deprecated_at":null},
+    {"asset_id":"obsidian-gold-vault","asset_version":"1.0.0","path":"assets/anchors/obsidian-gold/vault.svg","collection_id":"anchors-obsidian-gold","type":"style-anchor","variant":"vault","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"524c461c94919a1d75ec65ebee1bc0c5fea08a690977a4d4b9b87e1f055e3472","supersedes":null,"deprecated_at":null},
+    {"asset_id":"obsidian-gold-key","asset_version":"1.0.0","path":"assets/anchors/obsidian-gold/key.svg","collection_id":"anchors-obsidian-gold","type":"style-anchor","variant":"key","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"ab5620e606a49020ebfecb3b3f04e839a9610357d53dfe67d0122df7cff7da3c","supersedes":null,"deprecated_at":null},
+    {"asset_id":"obsidian-gold-crown","asset_version":"1.0.0","path":"assets/anchors/obsidian-gold/crown.svg","collection_id":"anchors-obsidian-gold","type":"style-anchor","variant":"crown","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic regression fixture under the repository license.","source":"Repository-authored SVG regression fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression","regression-golden"],"prohibited_roles":["production-final","generative-reference"],"source_note":"Approved deterministic contract fixture; not a production illustration.","sha256":"0d96b6b5a08c5a7f0d2f7390dc6e54736f7240249dd7e7f757dd86247d5fbeaf","supersedes":null,"deprecated_at":null},
+    {"asset_id":"anti-modern-flat-red-overload","asset_version":"1.0.0","path":"assets/anti-patterns/modern-flat-red-overload.svg","collection_id":"anti-patterns","type":"anti-pattern","variant":"red-overload","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic negative fixture under the repository license.","source":"Repository-authored SVG anti-pattern fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression-negative"],"prohibited_roles":["production-final","style-anchor","generative-reference"],"source_note":"Rejected fixture linked to PALETTE_ERROR.","sha256":"e3d1056bcb534e977f7aeb63bb271cf761b6ead3c472af17f5ad9dc4d7412067","supersedes":null,"deprecated_at":null},
+    {"asset_id":"anti-silver-gold-chrome","asset_version":"1.0.0","path":"assets/anti-patterns/silver-gold-chrome.svg","collection_id":"anti-patterns","type":"anti-pattern","variant":"chrome-gold-overload","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic negative fixture under the repository license.","source":"Repository-authored SVG anti-pattern fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression-negative"],"prohibited_roles":["production-final","style-anchor","generative-reference"],"source_note":"Rejected fixture linked to MATERIAL_ERROR.","sha256":"ab23b7db810ccee7e8e3c40e2252098269d7af406db044bce3d0d5452c155398","supersedes":null,"deprecated_at":null},
+    {"asset_id":"anti-obsidian-wrong-background","asset_version":"1.0.0","path":"assets/anti-patterns/obsidian-wrong-background.svg","collection_id":"anti-patterns","type":"anti-pattern","variant":"wrong-background-stone","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic negative fixture under the repository license.","source":"Repository-authored SVG anti-pattern fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression-negative"],"prohibited_roles":["production-final","style-anchor","generative-reference"],"source_note":"Rejected fixture linked to BACKGROUND_ERROR.","sha256":"9454432d1e90963eda55a61c89230d4a7df433607117b31d0327453484df80cf","supersedes":null,"deprecated_at":null},
+    {"asset_id":"anti-generated-logo","asset_version":"1.0.0","path":"assets/anti-patterns/generated-logo.svg","collection_id":"anti-patterns","type":"anti-pattern","variant":"generated-logo","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic negative fixture under the repository license.","source":"Repository-authored SVG anti-pattern fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression-negative"],"prohibited_roles":["production-final","style-anchor","generative-reference"],"source_note":"Rejected fixture linked to LOGO_ERROR.","sha256":"19a9043da71b5b339d813f457f7ce694efebe91d9dae91d2157062f1b3a14474","supersedes":null,"deprecated_at":null},
+    {"asset_id":"anti-composition-drift","asset_version":"1.0.0","path":"assets/anti-patterns/composition-drift.svg","collection_id":"anti-patterns","type":"anti-pattern","variant":"composition-drift","lifecycle_status":"active","approval_status":"approved","rights_status":"cleared","public_distribution_status":"approved","license_scope":"Repository-authored deterministic negative fixture under the repository license.","source":"Repository-authored SVG anti-pattern fixture for F3D#4.","owner":"Vsevolod Rymar / repository","allowed_backgrounds":[],"allowed_roles":["visual-regression-negative"],"prohibited_roles":["production-final","style-anchor","generative-reference"],"source_note":"Rejected fixture linked to COMPOSITION_DRIFT.","sha256":"98d634c410ade1a8f46581d946deef2cc089363697037c0822ceaeabc5945a9c","supersedes":null,"deprecated_at":null}
   ]
 }
