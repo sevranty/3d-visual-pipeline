@@ -1,0 +1,68 @@
+{
+  "manifest_version": "1.0",
+  "release_version": "0.2.0",
+  "intended_tag": "v0.2.0",
+  "release_base_sha": "0d2939698149f4e648deccb5e7b7bb337efd8ec4",
+  "release_content_sha": "7d918e7f7032c97b3ff6e966b4b90fec7357fd93",
+  "upstream_merge_commits": {
+    "F3D-001-002-003": "7cc7f8bbc434789c1239c2ccebfe790a8ffd1d1c",
+    "F3D-005": "08f4906a9df1073d4b5c9ab49a6f8baab654ffa1",
+    "F3D-006": "3b025d74765ace2ac535c0bf12d82d384891937c",
+    "F3D-007": "e22cc1dd39634dec4585bd2719f52154d9dea959",
+    "F3D-004": "0d2939698149f4e648deccb5e7b7bb337efd8ec4"
+  },
+  "contract_versions": {
+    "plugin": "0.2.0",
+    "scene_specification": "1.0",
+    "output_manifest": "1.1",
+    "runtime_profile": "1.0",
+    "asset_registry": "2.0",
+    "modern_flat": "2.1",
+    "silver_gold": "3.1",
+    "obsidian_gold": "1.0"
+  },
+  "validators": {
+    "repository": "pass",
+    "runtime": "pass",
+    "assets": "pass",
+    "visual-regression": "pass",
+    "installation-smoke": "pass",
+    "release": "self"
+  },
+  "evidence": {
+    "repository_validation": "F3D#5 PR#10 exact-head validation",
+    "runtime_validation": "F3D#6 PR#11 exact-head technical review",
+    "asset_validation": "F3D#7 PR#12 exact-head technical review",
+    "visual_validation": "F3D#4 PR#13 exact-head technical review and checked-in run manifest",
+    "release_notes": "release/0.2.0/RELEASE_NOTES.md",
+    "release_checklist": "RELEASE_CHECKLIST.md"
+  },
+  "public_repository": {
+    "internal_source_documents_present": false,
+    "secrets_detected": false,
+    "personal_data_dataset_present": false,
+    "asset_rights_gate": "pass",
+    "trademark_limitations_documented": true
+  },
+  "compatibility": {
+    "codex_plugin": "supported",
+    "repository_scoped_skill": "supported-fallback",
+    "python": ">=3.10",
+    "runtime_contract_examples": [
+      "chatgpt-image-generation@1",
+      "nano-banana-style@1"
+    ]
+  },
+  "publication": {
+    "source_release_state": "ready-for-merge",
+    "tag_state": "pending",
+    "github_release_state": "pending",
+    "tagged_installation_smoke_state": "pending",
+    "limitation": "The available GitHub connector does not expose tag or GitHub Release creation operations."
+  },
+  "known_limitations": [
+    "Generator capabilities remain environment-dependent.",
+    "Exact identity preservation is not guaranteed.",
+    "Tag, GitHub Release, and tagged installation smoke remain post-merge publication actions."
+  ]
+}
