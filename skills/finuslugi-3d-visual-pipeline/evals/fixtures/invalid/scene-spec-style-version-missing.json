@@ -1,0 +1,65 @@
+{
+  "spec_version": "1.0",
+  "task": {
+    "message": "Show premium value.",
+    "product_advantage": "Premium service.",
+    "metaphor": "Golden reward.",
+    "target_channel": "landing-hero"
+  },
+  "transformation_mode": "brand-adaptation",
+  "subject": {
+    "main_object": "award object",
+    "action_or_state": "static",
+    "mandatory_features": ["recognizable award"],
+    "supporting_elements": []
+  },
+  "references": [
+    {
+      "id": "ref-style-001",
+      "roles": ["style"],
+      "take": ["materials"],
+      "do_not_take": ["original object"]
+    }
+  ],
+  "locks": {
+    "semantic": ["premium value"],
+    "identity": [],
+    "composition_level": 2,
+    "style": {
+      "id": "silver-gold"
+    }
+  },
+  "composition": {
+    "aspect_ratio": "1:1",
+    "main_object_position": "centered",
+    "frame_coverage": 0.6,
+    "depth_order": ["background", "award"],
+    "negative_space": "uniform margin"
+  },
+  "camera": {
+    "viewpoint": "front three-quarter",
+    "perspective": "product perspective",
+    "crop": "full object"
+  },
+  "visual": {
+    "geometry": ["low-poly"],
+    "materials": ["matte silver", "gold accents"],
+    "lighting": ["controlled rim light"],
+    "palette": ["silver", "gold"],
+    "background": "neutral",
+    "detail_level": "standard"
+  },
+  "constraints": {
+    "preserve": ["main object"],
+    "change": [],
+    "exclude": ["chrome"]
+  },
+  "output": {
+    "width_px": 1024,
+    "height_px": 1024,
+    "background_mode": "opaque",
+    "file_format": "png",
+    "text_added_after_generation": true,
+    "logo_added_after_generation": true
+  }
+}
