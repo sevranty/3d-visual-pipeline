@@ -1,5 +1,5 @@
 {
-  "manifest_version": "1.0",
+  "manifest_version": "1.1",
   "asset": {
     "asset_id": "private-vault-hero",
     "version": "0.1.0",
@@ -25,10 +25,17 @@
     }
   ],
   "execution": {
-    "tool": "image-generation-tool",
+    "runtime_profile_id": "chatgpt-image-generation@1",
+    "adapter_id": "chatgpt-imagegen@1",
+    "tool": "ChatGPT image generation",
     "model": "recorded-at-runtime",
-    "mode": "reference-conditioned",
+    "requested_mode": "reference-conditioned",
+    "selected_mode": "reference-conditioned",
+    "required_capabilities": ["generate", "reference-conditioned", "multi-reference", "deliver"],
     "iterations": 3,
+    "fallback": {
+      "applied": false
+    },
     "limitations": []
   },
   "output": {
