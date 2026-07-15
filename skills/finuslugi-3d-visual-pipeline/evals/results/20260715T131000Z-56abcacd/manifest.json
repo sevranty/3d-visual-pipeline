@@ -1,0 +1,43 @@
+{
+  "result_manifest_version": "1.0",
+  "run_id": "20260715T131000Z-56abcacd",
+  "timestamp": "2026-07-15T13:10:00Z",
+  "head_sha": "56abcacd6b299432b56702bb974b24b38cafb7c0",
+  "tool": "repository deterministic SVG fixture pipeline",
+  "model": "none",
+  "inputs": [
+    "style-modern-flat.md@2.1",
+    "style-silver-gold.md@3.1",
+    "style-obsidian-gold.md@1.0",
+    "diagnostic-codes.md",
+    "visual-cases.json"
+  ],
+  "cases_total": 15,
+  "cases_passed": 15,
+  "cases_failed": 0,
+  "style_coverage": {
+    "modern-flat@2.1": 3,
+    "silver-gold@3.1": 3,
+    "obsidian-gold@1.0": 3
+  },
+  "flow_coverage": ["simple", "complex", "local-correction", "delivery"],
+  "diagnostic_coverage": [
+    "PALETTE_ERROR",
+    "MATERIAL_ERROR",
+    "BACKGROUND_ERROR",
+    "LOGO_ERROR",
+    "COMPOSITION_DRIFT",
+    "DELIVERY_MISSING"
+  ],
+  "repeatability": {
+    "attempts": 3,
+    "result": "pass",
+    "note": "Repository-authored SVG fixtures are byte-stable; all three checksum passes were identical."
+  },
+  "asset_registry_version": "2.0",
+  "checksums_source": "assets/checksums.sha256",
+  "rights_result": "pass",
+  "approval_result": "pass",
+  "known_instabilities": [],
+  "status": "pass"
+}
