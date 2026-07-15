@@ -1,6 +1,6 @@
 {
   "name": "finuslugi-3d-visual-pipeline",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Controlled reference-to-image production pipeline for governed and validated Finuslugi 3D visual assets.",
   "author": {
     "name": "Vsevolod Rymar",
