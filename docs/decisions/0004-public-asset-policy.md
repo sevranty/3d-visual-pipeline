@@ -11,7 +11,7 @@ The repository is public and uses Finuslugi logos and future approved visual anc
 ## Decision
 
 - Keep code and original repository documentation under MIT.
-- Record each binary asset in `assets/manifest.json` with a stable ID, checksum, source note, owner, approval status, allowed roles, and public-distribution status.
+- Record each binary asset in `../../assets/manifest.json` with a stable ID, checksum, source note, owner, approval status, allowed roles, and public-distribution status.
 - Do not place internal FDS source documents in the public repository.
 - Store normalized rules and source metadata instead of source DOCX/PDF files.
 - Treat brand assets as post-production inputs, never as generative targets.
