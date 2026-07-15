@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Anti-pattern composition drift">
+  <title>Anti-pattern composition drift</title>
+  <rect width="512" height="512" fill="#E8EDF1"/>
+  <circle cx="90" cy="90" r="72" fill="#FF0508"/>
+  <rect x="210" y="40" width="260" height="126" rx="28" fill="#173B66"/>
+  <path d="M36 430 L154 206 L264 402 L388 188 L486 420 Z" fill="#F0A24A"/>
+  <circle cx="420" cy="356" r="92" fill="#52C7D0"/>
+  <rect x="12" y="220" width="120" height="56" fill="#102A43"/>
+</svg>
