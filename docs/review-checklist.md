@@ -4,7 +4,7 @@ Review the exact Draft PR HEAD. Any new commit invalidates the review evidence a
 
 ## Architecture
 
-- [ ] Plugin manifest points to `./skills/`.
+- [ ] Plugin manifest points to `../skills/` from this documentation file and to `./skills/` in `.codex-plugin/plugin.json`.
 - [ ] Runtime rules live in one canonical `SKILL.md`.
 - [ ] Detailed rules live in canonical reference files.
 - [ ] Machine contracts live in schemas.
@@ -43,6 +43,5 @@ Review the exact Draft PR HEAD. Any new commit invalidates the review evidence a
 
 ## Lifecycle
 
-- [ ] PR remains Draft.
-- [ ] PR is not merged.
-- [ ] Ready or merge requires a separate owner instruction.
+- [ ] PR remains Draft until exact-HEAD validation passes.
+- [ ] Ready and merge follow the current explicit owner instruction.
