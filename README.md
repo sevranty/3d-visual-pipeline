@@ -10,25 +10,35 @@ Skill-only Codex plugin for controlled reference-to-image production: from task 
 ## Workflow
 
 1. validate inputs and rights
-2. define task, metaphor, and subject
+2. define task, metaphor and subject
 3. map each reference to one declared role
-4. lock semantics, identity, composition, and style
+4. lock semantics, identity, composition and style
 5. compile the Scene Specification
 6. choose one versioned style pack
 7. route through observed runtime capabilities
 8. generate or edit without hidden degradation
 9. diagnose and repair local defects
-10. validate, record provenance, and deliver visibly
+10. validate, record provenance and deliver visibly
 
 ## Installation
 
 Canonical instructions: `skills/3d-visual-pipeline/references/installation.md`.
+
+From a repository checkout:
 
 ```bash
 mkdir -p .agents/skills
 cp -R skills/3d-visual-pipeline .agents/skills/3d-visual-pipeline
 python3 skills/3d-visual-pipeline/scripts/smoke_test_installation.py
 ```
+
+For a published release, check out the immutable release tag before running the same commands. Do not treat a branch name as immutable release evidence.
+
+## Usage
+
+Tool-agnostic examples for style transfer, reinterpretation and local correction: `docs/examples.md`.
+
+Every request must declare inputs, reference roles, locks, stop conditions and visible delivery evidence.
 
 ## Canonical contracts
 
@@ -49,18 +59,22 @@ python3 skills/3d-visual-pipeline/scripts/smoke_test_installation.py
 
 ## Validation
 
+One local command matches the GitHub Actions validation set:
+
 ```bash
-python3 skills/3d-visual-pipeline/scripts/validate_repository.py
-python3 skills/3d-visual-pipeline/scripts/validate_runtime_contract.py
-python3 skills/3d-visual-pipeline/scripts/validate_asset_registry.py
-python3 skills/3d-visual-pipeline/scripts/validate_visual_regression.py
-python3 skills/3d-visual-pipeline/scripts/smoke_test_installation.py
-python3 skills/3d-visual-pipeline/scripts/validate_release.py
-python3 skills/3d-visual-pipeline/scripts/validate_debrand.py
-python3 -m unittest discover -s skills/3d-visual-pipeline/tests -p "test_*.py"
+python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir validation/runtime
 ```
 
-All runtime validators use only the Python standard library.
+The workflow publishes the `3dp/validation` status and uploads one compact JSON evidence artifact. When a hosted run does not exist, report `not run`; do not replace it with a local-CI claim.
+
+## Governance
+
+- local execution contract: `TASK.md`
+- orchestration boundary: `docs/decisions/0002-web-factory-os-orchestration.md`
+- debt closure record: `docs/debt/3dp-018.md`
+- runtime source: `skills/3d-visual-pipeline/SKILL.md`
+
+WebFactoryOS supplies routing and relation context only. This repository has no runtime, build, package, workflow or network dependency on it.
 
 ## License and rights
 
