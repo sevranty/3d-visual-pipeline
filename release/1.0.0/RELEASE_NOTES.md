@@ -18,7 +18,7 @@ This major release establishes the generic public package.
 
 ## Breaking changes
 
-The plugin identifier and skill installation path changed. Install from `skills/3d-visual-pipeline` and invoke the `3d-visual-pipeline` skill.
+The plugin identifier and skill installation path changed. Install from `../../skills/3d-visual-pipeline` and invoke the `3d-visual-pipeline` skill.
 
 ## Validation
 
