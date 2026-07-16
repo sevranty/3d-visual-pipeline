@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "intended_tag": "v1.0.0",
   "base_sha": "3d2cdea9f651f7641ec1f805519a777f013dd6ec",
-  "status": "candidate",
+  "status": "pass",
   "plugin_name": "3d-visual-pipeline",
   "skill_path": "skills/3d-visual-pipeline",
   "validation_commands": [
@@ -15,7 +15,7 @@
     "python3 skills/3d-visual-pipeline/scripts/validate_debrand.py",
     "python3 -m unittest discover -s skills/3d-visual-pipeline/tests -p \"test_*.py\""
   ],
-  "asset_manifest_sha256": "26b1c0e1db1cd323343359ee2b2fa3dc7e5825f57a447dc42bee89f8234bbaa9",
+  "asset_manifest_sha256": "145ae4609456f835854995739fc5115c008b318f8e2b821bcdcd3516bad09f80",
   "known_limitations": [
     "Generator capabilities remain runtime observations.",
     "Exact identity preservation is not guaranteed."

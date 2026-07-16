@@ -37,11 +37,11 @@ jobs:
         if: success()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha || github.sha }}" -f state=success -f context=dvp/validation -f description="All repository and release validators passed"
+        run: gh api --method POST "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha || github.sha }}" -f state=success -f context=3dp/validation -f description="All repository and release validators passed"
       - name: Upload evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: dvp-validation-${{ github.run_id }}
+          name: 3dp-validation-${{ github.run_id }}
           path: validation/runtime/*.json
           if-no-files-found: error

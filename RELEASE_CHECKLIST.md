@@ -5,7 +5,7 @@
 - [x] Repository, plugin, skill, and commands use `3d-visual-pipeline`.
 - [x] Skill path is `skills/3d-visual-pipeline`.
 - [x] Plugin version is `1.0.0`.
-- [x] Validation context is `dvp/validation`.
+- [x] Validation context is `3dp/validation`.
 
 ## Debrand
 

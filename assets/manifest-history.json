@@ -14,6 +14,14 @@
         "assets-source-plugin-icon",
         "assets-source-plugin-logo"
       ]
+    },
+    {
+      "date": "2026-07-16",
+      "action": "sync-plugin-asset-checksums",
+      "assets": [
+        "assets-plugin-icon",
+        "assets-plugin-logo"
+      ]
     }
   ]
 }
