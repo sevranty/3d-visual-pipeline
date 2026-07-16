@@ -31,3 +31,10 @@
 - [ ] Public GitHub Release published from checked-in notes.
 - [ ] Full validation repeated from immutable tag.
 - [ ] Closure evidence merged.
+
+## Evidence lifecycle
+
+- [x] Candidate state records local exact-HEAD evidence and does not claim hosted CI success.
+- [ ] Tagged-validated state records immutable `v1.0.0` tag binding.
+- [ ] Published state records release publication timestamp.
+- [x] Hosted Actions unavailable evidence is recorded as `not run`.

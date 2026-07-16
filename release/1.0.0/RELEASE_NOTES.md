@@ -20,3 +20,7 @@ The plugin identifier and skill installation path changed. Install from the skil
 ## Legacy boundary
 
 The deprecated pre-generic release remains an immutable historical record and is not recommended for installation.
+
+## Release lifecycle
+
+The `candidate` state means local exact-HEAD validation is available and hosted CI may be `not run`. `tagged-validated` requires `v1.0.0` to resolve to the recorded tag SHA. `published` additionally requires a publication timestamp.

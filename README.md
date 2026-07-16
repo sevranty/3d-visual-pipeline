@@ -5,7 +5,7 @@
 Skill-only Codex plugin for controlled reference-to-image production: from task framing and reference mapping to a validated, visibly delivered three-dimensional visual.
 
 **Version:** `1.0.0`  
-**Status:** generic public release candidate
+**Status:** candidate (local validation only; hosted CI evidence is `not run` until a workflow run exists)
 
 ## Workflow
 
@@ -22,7 +22,7 @@ Skill-only Codex plugin for controlled reference-to-image production: from task 
 
 ## Installation
 
-Canonical instructions: `skills/3d-visual-pipeline/references/installation.md`.
+Canonical instructions: `skills/3d-visual-pipeline/references/installation.md`. Minimal examples: `docs/examples.md`. Debt register: `docs/debt-register-3dp-018.md`.
 
 ```bash
 mkdir -p .agents/skills

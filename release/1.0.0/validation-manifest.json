@@ -19,5 +19,14 @@
   "known_limitations": [
     "Generator capabilities remain runtime observations.",
     "Exact identity preservation is not guaranteed."
-  ]
+  ],
+  "legacy_immutable_tag": "v0.2.0",
+  "evidence": {
+    "head_sha": null,
+    "tag_sha": null,
+    "hosted_ci": "not run",
+    "local_command": "python3 skills/3d-visual-pipeline/scripts/validate_repository.py && python3 skills/3d-visual-pipeline/scripts/validate_runtime_contract.py && python3 skills/3d-visual-pipeline/scripts/validate_asset_registry.py && python3 skills/3d-visual-pipeline/scripts/validate_visual_regression.py && python3 skills/3d-visual-pipeline/scripts/smoke_test_installation.py && python3 skills/3d-visual-pipeline/scripts/validate_release.py && python3 skills/3d-visual-pipeline/scripts/validate_debrand.py && python3 -m unittest discover -s skills/3d-visual-pipeline/tests -p \"test_*.py\"",
+    "reports_path": "validation/runtime/",
+    "head_binding": "runtime validator records git rev-parse HEAD in release report checks"
+  }
 }
