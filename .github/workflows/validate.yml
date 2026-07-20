@@ -2,9 +2,16 @@ name: Validate repository
 
 on:
   push:
-    branches: [main, "feat/**", "fix/**", "release/**", "chore/**"]
+    branches: [main]
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
+    inputs:
+      upload_evidence:
+        description: Upload validation JSON evidence
+        required: false
+        default: true
+        type: boolean
 
 concurrency:
   group: 3dp-validation-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -14,7 +21,6 @@ permissions:
   contents: read
   issues: read
   pull-requests: read
-  statuses: write
 
 jobs:
   validate:
@@ -25,6 +31,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Validate diff whitespace
         if: github.event_name == 'pull_request'
@@ -52,22 +59,10 @@ jobs:
             exit 1
           fi
 
-      - name: Publish success status
-        if: success()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha || github.sha }}" -f state=success -f context=3dp/validation -f description="All repository, release and PR governance validators passed"
-
-      - name: Publish failure status
-        if: failure()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha || github.sha }}" -f state=failure -f context=3dp/validation -f description="Repository, release or PR governance validation failed"
-
-      - name: Upload evidence
-        if: always()
+      - name: Upload validation evidence
+        if: failure() || (github.event_name == 'workflow_dispatch' && inputs.upload_evidence)
         uses: actions/upload-artifact@v4
         with:
           name: 3dp-validation-${{ github.run_id }}
           path: validation/runtime/*.json
-          if-no-files-found: error
+          if-no-files-found: warn
