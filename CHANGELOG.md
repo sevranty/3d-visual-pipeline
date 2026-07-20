@@ -5,8 +5,9 @@
 ### Changed
 
 - Added the local WebFactoryOS orchestration boundary without a runtime or build dependency.
-- Standardized active project metadata and validation context on `3DP` and `3dp/validation`.
+- Standardized active project metadata and validation identity on `3DP` and the native `Validate repository / validate` check.
 - Added one deterministic validation entrypoint shared by local execution and GitHub Actions.
+- Deduplicated task-branch and Pull Request validation, retained one read-only job and limited artifacts to failed or requested manual runs.
 - Added explicit release lifecycle states, tag binding checks and negative tests.
 - Added tool-agnostic public usage examples and a factual debt closure record.
 
