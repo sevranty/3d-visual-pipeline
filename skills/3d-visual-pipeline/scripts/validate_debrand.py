@@ -25,6 +25,7 @@ def legacy_short_ids() -> list[str]:
 HISTORICAL_TEXT_ALLOWLIST = {
     "CHANGELOG.md",
     "release/1.0.0/RELEASE_NOTES.md",
+    "docs/debt/3dp-027-governance-incident.md",
 }
 HISTORICAL_MARKERS = ("legacy", "historical", "deprecated")
 
