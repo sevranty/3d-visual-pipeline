@@ -55,6 +55,15 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertNotIn("validation_context", self.manifest)
         self.assertNotIn(self.LEGACY_CUSTOM_STATUS, json.dumps(self.manifest, sort_keys=True))
 
+    def test_ci_identity_migration_preserves_candidate_release_state(self):
+        self.assertEqual(self.manifest.get("status"), "candidate")
+        self.assertEqual(
+            self.manifest.get("hosted_ci"),
+            {"status": "not_run", "run_url": None, "commit_sha": None},
+        )
+        for field in ("tag_target", "tagged_validation", "release_url"):
+            self.assertIsNone(self.manifest.get(field))
+
     def test_legacy_custom_status_is_explicitly_historical(self):
         self.assertIn(
             "`3dp/validation` was the custom commit-status context for the 3DP-018 baseline.",
