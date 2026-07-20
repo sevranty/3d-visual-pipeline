@@ -26,6 +26,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
+      - name: Validate diff whitespace
+        if: github.event_name == 'pull_request'
+        run: git diff --check "${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }}"
+
       - name: Run complete validation
         run: python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir validation/runtime
 
@@ -38,6 +42,15 @@ jobs:
           --event "$GITHUB_EVENT_PATH"
           --repository "$GITHUB_REPOSITORY"
           --report validation/runtime/pr-governance.json
+
+      - name: Verify clean workspace
+        if: always()
+        run: |
+          changes="$(git status --short)"
+          if [ -n "$changes" ]; then
+            printf '%s\n' "$changes"
+            exit 1
+          fi
 
       - name: Publish success status
         if: success()
