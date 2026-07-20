@@ -17,6 +17,7 @@ def candidate_manifest():
         "tag_target": None,
         "tagged_validation": None,
         "release_url": None,
+        "github_release": None,
         "legacy_release": {
             "tag": "v0.2.0",
             "target": "3d2cdea9f651f7641ec1f805519a777f013dd6ec",
@@ -25,11 +26,46 @@ def candidate_manifest():
     }
 
 
+def tagged_evidence(target: str):
+    return {
+        "status": "pass",
+        "tag": "v1.0.0",
+        "tag_object_type": "tag",
+        "checkout_sha": target,
+        "peeled_commit": target,
+        "command": "python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir validation/runtime",
+        "report": "validation/runtime/summary.json",
+        "validated_at": "2026-07-20T12:00:00Z",
+    }
+
+
+def published_manifest():
+    manifest = candidate_manifest()
+    target = "1" * 40
+    url = "https://github.com/sevranty/3d-visual-pipeline/releases/tag/v1.0.0"
+    manifest.update(
+        {
+            "status": "published",
+            "tag_target": target,
+            "tagged_validation": tagged_evidence(target),
+            "release_url": url,
+            "github_release": {
+                "url": url,
+                "tag": "v1.0.0",
+                "draft": False,
+                "prerelease": False,
+                "published_at": "2026-07-20T12:30:00Z",
+            },
+        }
+    )
+    return manifest
+
+
 class ReleaseLifecycleTests(unittest.TestCase):
     def test_candidate_passes(self):
         self.assertEqual(mod.validate_manifest(candidate_manifest()), [])
 
-    def test_legacy_pass_state_rejected(self):
+    def test_pr25_legacy_pass_state_rejected(self):
         manifest = candidate_manifest()
         manifest["status"] = "pass"
         self.assertIn("release status invalid", mod.validate_manifest(manifest))
@@ -39,25 +75,79 @@ class ReleaseLifecycleTests(unittest.TestCase):
         manifest["tag_target"] = "1" * 40
         self.assertIn("candidate contains publication evidence", mod.validate_manifest(manifest))
 
-    def test_hosted_success_requires_url_and_commit(self):
+    def test_hosted_not_run_rejects_claimed_run(self):
+        manifest = candidate_manifest()
+        manifest["hosted_ci"] = {
+            "status": "not_run",
+            "run_url": "https://github.com/sevranty/3d-visual-pipeline/actions/runs/1",
+            "commit_sha": "1" * 40,
+        }
+        self.assertIn("hosted CI not_run contains run evidence", mod.validate_manifest(manifest))
+
+    def test_hosted_result_requires_url_and_commit(self):
         manifest = candidate_manifest()
         manifest["hosted_ci"] = {"status": "passed", "run_url": None, "commit_sha": None}
-        self.assertIn("hosted CI pass lacks run URL or exact commit", mod.validate_manifest(manifest))
+        errors = mod.validate_manifest(manifest)
+        self.assertIn("hosted CI result lacks canonical run URL", errors)
+        self.assertIn("hosted CI result lacks exact commit", errors)
 
     def test_tagged_validation_must_bind_to_target(self):
         manifest = candidate_manifest()
         manifest["status"] = "tagged-validated"
         manifest["tag_target"] = "1" * 40
-        manifest["tagged_validation"] = {"status": "pass", "checkout_sha": "2" * 40}
-        self.assertIn("tagged validation is not bound to tag target", mod.validate_manifest(manifest))
+        manifest["tagged_validation"] = tagged_evidence("2" * 40)
+        errors = mod.validate_manifest(manifest)
+        self.assertIn("tagged validation is not bound to tag target", errors)
+        self.assertIn("tagged validation peeled commit differs from tag target", errors)
+
+    def test_tagged_validation_requires_annotated_tag(self):
+        manifest = candidate_manifest()
+        target = "1" * 40
+        evidence = tagged_evidence(target)
+        evidence["tag_object_type"] = "commit"
+        manifest.update(
+            {
+                "status": "tagged-validated",
+                "tag_target": target,
+                "tagged_validation": evidence,
+            }
+        )
+        self.assertIn("tagged validation lacks annotated tag object", mod.validate_manifest(manifest))
+
+    def test_tagged_validation_requires_command_report_and_timestamp(self):
+        manifest = candidate_manifest()
+        target = "1" * 40
+        evidence = tagged_evidence(target)
+        evidence["command"] = ""
+        evidence["report"] = None
+        evidence["validated_at"] = "today"
+        manifest.update(
+            {
+                "status": "tagged-validated",
+                "tag_target": target,
+                "tagged_validation": evidence,
+            }
+        )
+        errors = mod.validate_manifest(manifest)
+        self.assertIn("tagged validation command missing", errors)
+        self.assertIn("tagged validation report missing", errors)
+        self.assertIn("tagged validation timestamp invalid", errors)
+
+    def test_published_manifest_passes(self):
+        self.assertEqual(mod.validate_manifest(published_manifest()), [])
 
     def test_published_requires_canonical_release_url(self):
-        manifest = candidate_manifest()
-        manifest["status"] = "published"
-        manifest["tag_target"] = "1" * 40
-        manifest["tagged_validation"] = {"status": "pass", "checkout_sha": "1" * 40}
+        manifest = published_manifest()
         manifest["release_url"] = "https://example.test/release"
         self.assertIn("published state lacks canonical release URL", mod.validate_manifest(manifest))
+
+    def test_published_requires_public_release_flags(self):
+        manifest = published_manifest()
+        manifest["github_release"]["draft"] = True
+        manifest["github_release"]["prerelease"] = True
+        errors = mod.validate_manifest(manifest)
+        self.assertIn("GitHub Release must be non-draft", errors)
+        self.assertIn("GitHub Release must be non-prerelease", errors)
 
     def test_legacy_boundary_is_immutable(self):
         manifest = deepcopy(candidate_manifest())
