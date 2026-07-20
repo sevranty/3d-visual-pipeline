@@ -5,7 +5,7 @@
   "status": "candidate",
   "plugin_name": "3d-visual-pipeline",
   "skill_path": "skills/3d-visual-pipeline",
-  "validation_context": "3dp/validation",
+  "validation_check": "Validate repository / validate",
   "validation_entrypoint": "python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir validation/runtime",
   "validation_commands": [
     "python3 skills/3d-visual-pipeline/scripts/validate_repository.py",

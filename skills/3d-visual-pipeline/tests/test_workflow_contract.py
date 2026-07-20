@@ -1,13 +1,21 @@
+import json
 import re
 import unittest
 from pathlib import Path
 
 
 class WorkflowContractTests(unittest.TestCase):
+    NATIVE_CHECK = "Validate repository / validate"
+    LEGACY_CUSTOM_STATUS = "3dp/validation"
+
     @classmethod
     def setUpClass(cls):
         root = Path(__file__).resolve().parents[3]
         cls.workflow = (root / ".github/workflows/validate.yml").read_text(encoding="utf-8")
+        cls.manifest = json.loads(
+            (root / "release/1.0.0/validation-manifest.json").read_text(encoding="utf-8")
+        )
+        cls.debt = (root / "docs/debt/3dp-018.md").read_text(encoding="utf-8")
 
     def test_trigger_matrix_has_no_task_branch_push_overlap(self):
         self.assertRegex(
@@ -36,10 +44,36 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("persist-credentials: false", self.workflow)
 
     def test_native_job_check_replaces_custom_status(self):
+        self.assertRegex(self.workflow, r"(?m)^name: Validate repository$")
         self.assertNotIn("context=3dp/validation", self.workflow)
         self.assertNotIn("Publish success status", self.workflow)
         self.assertNotIn("Publish failure status", self.workflow)
         self.assertNotIn("gh api --method POST", self.workflow)
+
+    def test_release_manifest_matches_native_workflow_check(self):
+        self.assertEqual(self.manifest.get("validation_check"), self.NATIVE_CHECK)
+        self.assertNotIn("validation_context", self.manifest)
+        self.assertNotIn(self.LEGACY_CUSTOM_STATUS, json.dumps(self.manifest, sort_keys=True))
+
+    def test_ci_identity_migration_preserves_candidate_release_state(self):
+        self.assertEqual(self.manifest.get("status"), "candidate")
+        self.assertEqual(
+            self.manifest.get("hosted_ci"),
+            {"status": "not_run", "run_url": None, "commit_sha": None},
+        )
+        for field in ("tag_target", "tagged_validation", "release_url"):
+            self.assertIsNone(self.manifest.get(field))
+
+    def test_legacy_custom_status_is_explicitly_historical(self):
+        self.assertIn(
+            "`3dp/validation` was the custom commit-status context for the 3DP-018 baseline.",
+            self.debt,
+        )
+        self.assertIn(
+            "The current canonical CI identity is the native GitHub Actions check "
+            "`Validate repository / validate`; the custom status is no longer published.",
+            self.debt,
+        )
 
     def test_artifacts_are_failure_or_requested_manual_only(self):
         self.assertIn("default: false", self.workflow)
