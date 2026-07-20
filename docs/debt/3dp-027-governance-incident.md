@@ -20,7 +20,7 @@ legacy target: 3d2cdea9f651f7641ec1f805519a777f013dd6ec
 | Item | Exact record | Finding | Resolution |
 |---|---|---|---|
 | PR #19 | merge `28f842210cf15a78d5d72fa599a0aa8b37c53162` | Consolidated WFO adapter, naming and release hardening were merged before complete reconstructed-tree validation finished | Full post-merge validation was completed and defects were isolated |
-| PR #23 | merge `e4f3d25e07e7b1336c7df0183b808ced24293ad2` | Corrected a broken nested release link and stale checksum records | Candidate validation tree repaired without runtime, style or binary changes |
+| PR #23 | historical merge `e4f3d25e07e7b1336c7df0183b808ced24293ad2` | Corrected a broken nested release link and stale checksum records | Candidate validation tree repaired without runtime, style or binary changes |
 | PR #24 | merge `74670a91ee9931f1ee7a32255616cc5274f9825c` | Completed the repository execution Issue Form and contract coverage | Task intake contract completed |
 | PR #20 | head `3ea4df6842d4d52e570055f4a2889dfb00e5ab42` | Parallel duplicate of release hardening work | Closed without merge and marked superseded |
 | PR #21 | head `bfa2a1e1dedb96441b67f503ad9c3b873079c59c` | Parallel duplicate of SHORT_ID and validation identity work | Closed without merge and marked superseded |
