@@ -4,8 +4,8 @@
 
 Skill-only Codex plugin for controlled reference-to-image production: from task framing and reference mapping to a validated, visibly delivered three-dimensional visual.
 
-**Version:** `1.0.0`  
-**Status:** generic public release  
+**Version:** `1.0.0`<br>
+**Status:** generic public release<br>
 **Release:** [`v1.0.0`](https://github.com/sevranty/3d-visual-pipeline/releases/tag/v1.0.0)
 
 ## Workflow
