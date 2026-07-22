@@ -32,8 +32,8 @@ python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir validatio
 
 - [x] Exact approved release commit validation passes
 - [x] Hosted GitHub Actions result for immutable-tag validation is recorded factually as `not_run`
-- [ ] Closure PR full diff review has no P0-P2 findings
-- [ ] Closure PR unresolved review threads are zero
+- [x] Closure PR full diff review has no P0-P2 findings
+- [x] Closure PR unresolved review threads are zero
 
 Immutable-tag validation evidence:
 
