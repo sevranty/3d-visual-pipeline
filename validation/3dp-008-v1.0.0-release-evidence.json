@@ -1,0 +1,71 @@
+{
+  "project_id": "3D_VISUAL_PIPELINE",
+  "short_id": "3DP",
+  "task_id": "3DP-008",
+  "release": "1.0.0",
+  "tag": {
+    "name": "v1.0.0",
+    "object_type": "tag",
+    "object_sha": "158aa30c4fa7e17ae587c288b619df1ff824f62d",
+    "peeled_commit": "eea9b34403d05b32393e118883334e75f0d76170"
+  },
+  "legacy_release": {
+    "tag": "v0.2.0",
+    "peeled_commit": "3d2cdea9f651f7641ec1f805519a777f013dd6ec",
+    "immutable": true
+  },
+  "immutable_tag_validation": {
+    "status": "pass",
+    "validated_at": "2026-07-22T19:42:40.666580+00:00",
+    "environment": "GitHub Codespaces",
+    "checkout": "v1.0.0^{}",
+    "checkout_sha": "eea9b34403d05b32393e118883334e75f0d76170",
+    "command": "python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir /tmp/3dp-v1.0.0-validation",
+    "worktree_clean": true,
+    "groups": {
+      "repository": "pass",
+      "runtime-contract": "pass",
+      "asset-registry": "pass",
+      "visual-regression": "pass",
+      "installation-smoke": "pass",
+      "release": "pass",
+      "debrand": "pass",
+      "unittest": "pass"
+    },
+    "unit_tests": {
+      "count": 52,
+      "status": "pass"
+    },
+    "hosted_ci": {
+      "status": "not_run",
+      "note": "No hosted run is claimed for the immutable-tag checkout."
+    }
+  },
+  "github_release": {
+    "url": "https://github.com/sevranty/3d-visual-pipeline/releases/tag/v1.0.0",
+    "tag": "v1.0.0",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-07-22T19:33:46Z",
+    "latest": true
+  },
+  "evidence_source": {
+    "type": "owner-provided-terminal-output-and-screenshots",
+    "issue": "https://github.com/sevranty/3d-visual-pipeline/issues/8"
+  },
+  "known_governance_debt": [
+    {
+      "source": "PR #28",
+      "severity": "P1",
+      "status": "open",
+      "summary": "validate_release.py validates recorded fields but does not query Git to prove the tag object and peeled target. Git-native verification was therefore performed independently for v1.0.0."
+    },
+    {
+      "source": "PR #28",
+      "severity": "P2",
+      "status": "open",
+      "summary": "validate_pr_governance.py does not reject every conflicting valid TASK_ID body and title combination."
+    }
+  ],
+  "evidence_boundary": "The two PR #28 findings are recorded as open governance debt and are not represented as fixed by 3DP-008."
+}
