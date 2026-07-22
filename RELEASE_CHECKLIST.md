@@ -51,7 +51,7 @@ Current factual state: `published`
 - [x] Manifest records exact annotated-tag object, target and checkout evidence
 - [x] Public non-draft, non-prerelease GitHub Release published from checked-in notes
 - [x] Manifest moved to `published` with canonical Release URL
-- [ ] Closure evidence merged
+- [x] Closure evidence prepared and approved for guarded merge in PR #33
 
 Release: https://github.com/sevranty/3d-visual-pipeline/releases/tag/v1.0.0
 
