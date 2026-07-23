@@ -55,6 +55,8 @@ def parse_task_metadata(body: str, title: str = "") -> tuple[str | None, int | N
         errors.append("TASK_ID and canonical Issue number differ")
     if title_number is not None and task_number is not None and title_number != task_number:
         errors.append("PR title task number differs from TASK_ID")
+    if title_number is not None and issue_number is not None and title_number != issue_number:
+        errors.append("PR title task number differs from canonical Issue")
     return task_id, issue_number, errors
 
 
@@ -76,14 +78,20 @@ def parse_superseded_numbers(body: str) -> tuple[list[int], list[str]]:
     return numbers, []
 
 
-def task_id_from_record(record: PullRequestRecord) -> str | None:
+def task_ids_from_record(record: PullRequestRecord) -> set[str]:
+    task_ids: set[str] = set()
     task_match = TASK_ID_RE.search(record.body)
     if task_match:
-        return task_match.group(1)
+        task_ids.add(task_match.group(1))
     title_match = TITLE_TASK_RE.search(record.title)
     if title_match:
-        return canonical_task_id(int(title_match.group(1)))
-    return None
+        task_ids.add(canonical_task_id(int(title_match.group(1))))
+    return task_ids
+
+
+def task_id_from_record(record: PullRequestRecord) -> str | None:
+    task_ids = task_ids_from_record(record)
+    return next(iter(task_ids)) if len(task_ids) == 1 else None
 
 
 def validate_canonical_issue(payload: Any, expected_number: int, expected_task_id: str) -> list[str]:
@@ -122,7 +130,7 @@ def validate_records(
         duplicates = sorted(
             record.number
             for record in open_records
-            if record.number != current.number and task_id_from_record(record) == task_id
+            if record.number != current.number and task_id in task_ids_from_record(record)
         )
         if duplicates:
             joined = ", ".join(f"#{number}" for number in duplicates)
