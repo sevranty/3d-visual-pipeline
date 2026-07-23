@@ -55,7 +55,20 @@ class PullRequestGovernanceTests(unittest.TestCase):
             body("3DP-027", 8),
             "open",
         )
-        self.assertIn("TASK_ID and canonical Issue number differ", mod.validate_records(current, [current], {}))
+        errors = mod.validate_records(current, [current], {})
+        self.assertIn("TASK_ID and canonical Issue number differ", errors)
+        self.assertIn("PR title task number differs from canonical Issue", errors)
+
+    def test_title_and_task_id_mismatch_fails(self):
+        current = mod.PullRequestRecord(
+            28,
+            "🔗 3DP#8 → PR#28",
+            body("3DP-027", 27),
+            "open",
+        )
+        errors = mod.validate_records(current, [current], {})
+        self.assertIn("PR title task number differs from TASK_ID", errors)
+        self.assertIn("PR title task number differs from canonical Issue", errors)
 
     def test_parallel_active_pr_for_same_task_fails(self):
         current = record(28, "3DP-027")
@@ -66,6 +79,30 @@ class PullRequestGovernanceTests(unittest.TestCase):
     def test_legacy_title_only_duplicate_is_detected(self):
         current = record(28, "3DP-027")
         duplicate = mod.PullRequestRecord(29, "🔗 3DP#27 → old PR", "", "open")
+        errors = mod.validate_records(current, [current, duplicate], {})
+        self.assertIn("parallel active implementation PRs for 3DP-027: #29", errors)
+
+    def test_conflicting_duplicate_body_and_matching_title_is_detected(self):
+        current = record(28, "3DP-027")
+        duplicate = mod.PullRequestRecord(
+            29,
+            "🔗 3DP#27 → conflicting PR",
+            body("3DP-008", 8),
+            "open",
+        )
+        self.assertEqual(mod.task_ids_from_record(duplicate), {"3DP-008", "3DP-027"})
+        errors = mod.validate_records(current, [current, duplicate], {})
+        self.assertIn("parallel active implementation PRs for 3DP-027: #29", errors)
+
+    def test_conflicting_duplicate_title_and_matching_body_is_detected(self):
+        current = record(28, "3DP-027")
+        duplicate = mod.PullRequestRecord(
+            29,
+            "🔗 3DP#8 → conflicting PR",
+            body("3DP-027", 27),
+            "open",
+        )
+        self.assertEqual(mod.task_ids_from_record(duplicate), {"3DP-008", "3DP-027"})
         errors = mod.validate_records(current, [current, duplicate], {})
         self.assertIn("parallel active implementation PRs for 3DP-027: #29", errors)
 
