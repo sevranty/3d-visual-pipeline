@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import re
-from typing import Any
+import subprocess
+from pathlib import Path
+from typing import Any, Callable
 
 from validation_lib import Result, parse_args, read_json, repo_root, write_report
 
@@ -14,10 +16,25 @@ LEGACY_TARGET = "3d2cdea9f651f7641ec1f805519a777f013dd6ec"
 ALLOWED_STATES = {"candidate", "tagged-validated", "published"}
 HEX_SHA = re.compile(r"^[0-9a-f]{40}$")
 UTC_TIMESTAMP = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$")
+GitReader = Callable[[Path, tuple[str, ...]], tuple[str | None, str | None]]
 
 
 def has_text(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
+
+
+def read_git_value(root: Path, args: tuple[str, ...]) -> tuple[str | None, str | None]:
+    completed = subprocess.run(
+        ["git", *args],
+        cwd=root,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        detail = completed.stderr.strip() or completed.stdout.strip() or f"exit {completed.returncode}"
+        return None, detail
+    return completed.stdout.strip(), None
 
 
 def validate_hosted_ci(hosted: Any) -> list[str]:
@@ -65,6 +82,44 @@ def validate_tagged_evidence(tagged: Any, tag_target: Any) -> list[str]:
         errors.append("tagged validation report missing")
     if not UTC_TIMESTAMP.fullmatch(str(tagged.get("validated_at") or "")):
         errors.append("tagged validation timestamp invalid")
+    return errors
+
+
+def validate_git_tag(
+    root: Path,
+    manifest: dict[str, Any],
+    git_reader: GitReader = read_git_value,
+) -> list[str]:
+    state = manifest.get("status")
+    if state not in {"tagged-validated", "published"}:
+        return []
+
+    errors: list[str] = []
+    tagged = manifest.get("tagged_validation")
+    tag_target = manifest.get("tag_target")
+    recorded_object_sha = tagged.get("tag_object_sha") if isinstance(tagged, dict) else None
+    recorded_peeled_commit = tagged.get("peeled_commit") if isinstance(tagged, dict) else None
+
+    actual_type, detail = git_reader(root, ("cat-file", "-t", TAG))
+    if detail is not None:
+        return [f"Git release tag {TAG} could not be resolved: {detail}"]
+    if actual_type != "tag":
+        errors.append(f"Git release tag {TAG} is not annotated")
+
+    actual_object_sha, detail = git_reader(root, ("rev-parse", TAG))
+    if detail is not None:
+        errors.append(f"Git tag object SHA could not be resolved: {detail}")
+    elif actual_object_sha != recorded_object_sha:
+        errors.append("Git tag object SHA differs from recorded evidence")
+
+    actual_peeled_commit, detail = git_reader(root, ("rev-parse", f"{TAG}^{{}}"))
+    if detail is not None:
+        errors.append(f"Git peeled release commit could not be resolved: {detail}")
+    else:
+        if actual_peeled_commit != tag_target:
+            errors.append("Git peeled release commit differs from tag target")
+        if actual_peeled_commit != recorded_peeled_commit:
+            errors.append("Git peeled release commit differs from recorded evidence")
     return errors
 
 
@@ -139,6 +194,8 @@ def main() -> int:
     if plugin.get("version") != VERSION:
         result.error("plugin version not aligned")
     for error in validate_manifest(manifest):
+        result.error(error)
+    for error in validate_git_tag(root, manifest):
         result.error(error)
 
     for path in [
