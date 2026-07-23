@@ -176,9 +176,9 @@ class ReleaseLifecycleTests(unittest.TestCase):
         target = manifest["tag_target"]
         reader = fake_git(
             {
-                ("cat-file", "-t", "v1.0.0"): ("tag", None),
-                ("rev-parse", "v1.0.0"): ("3" * 40, None),
-                ("rev-parse", "v1.0.0^{}"): (target, None),
+                ("cat-file", "-t", "refs/tags/v1.0.0"): ("tag", None),
+                ("rev-parse", "refs/tags/v1.0.0"): ("3" * 40, None),
+                ("rev-parse", "refs/tags/v1.0.0^{}"): (target, None),
             }
         )
         self.assertEqual(mod.validate_git_tag(Path("."), manifest, reader), [])
@@ -187,7 +187,7 @@ class ReleaseLifecycleTests(unittest.TestCase):
         manifest = published_manifest()
         reader = fake_git(
             {
-                ("cat-file", "-t", "v1.0.0"): (None, "fatal: Not a valid object name v1.0.0"),
+                ("cat-file", "-t", "refs/tags/v1.0.0"): (None, "fatal: Not a valid object name v1.0.0"),
             }
         )
         errors = mod.validate_git_tag(Path("."), manifest, reader)
@@ -198,9 +198,9 @@ class ReleaseLifecycleTests(unittest.TestCase):
         target = manifest["tag_target"]
         reader = fake_git(
             {
-                ("cat-file", "-t", "v1.0.0"): ("commit", None),
-                ("rev-parse", "v1.0.0"): (target, None),
-                ("rev-parse", "v1.0.0^{}"): (target, None),
+                ("cat-file", "-t", "refs/tags/v1.0.0"): ("commit", None),
+                ("rev-parse", "refs/tags/v1.0.0"): (target, None),
+                ("rev-parse", "refs/tags/v1.0.0^{}"): (target, None),
             }
         )
         errors = mod.validate_git_tag(Path("."), manifest, reader)
@@ -212,9 +212,9 @@ class ReleaseLifecycleTests(unittest.TestCase):
         target = manifest["tag_target"]
         reader = fake_git(
             {
-                ("cat-file", "-t", "v1.0.0"): ("tag", None),
-                ("rev-parse", "v1.0.0"): ("4" * 40, None),
-                ("rev-parse", "v1.0.0^{}"): (target, None),
+                ("cat-file", "-t", "refs/tags/v1.0.0"): ("tag", None),
+                ("rev-parse", "refs/tags/v1.0.0"): ("4" * 40, None),
+                ("rev-parse", "refs/tags/v1.0.0^{}"): (target, None),
             }
         )
         self.assertIn(
@@ -226,9 +226,9 @@ class ReleaseLifecycleTests(unittest.TestCase):
         manifest = published_manifest()
         reader = fake_git(
             {
-                ("cat-file", "-t", "v1.0.0"): ("tag", None),
-                ("rev-parse", "v1.0.0"): ("3" * 40, None),
-                ("rev-parse", "v1.0.0^{}"): ("2" * 40, None),
+                ("cat-file", "-t", "refs/tags/v1.0.0"): ("tag", None),
+                ("rev-parse", "refs/tags/v1.0.0"): ("3" * 40, None),
+                ("rev-parse", "refs/tags/v1.0.0^{}"): ("2" * 40, None),
             }
         )
         errors = mod.validate_git_tag(Path("."), manifest, reader)
