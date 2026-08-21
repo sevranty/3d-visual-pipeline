@@ -1,5 +1,7 @@
 # DDO#451 TRANSFER adapter — 3DP
 
+Local task: `3DP-039` / Issue #39.
+
 Центральный orchestration source: https://github.com/sevranty/design-director-ops/issues/451
 
 Rollout: https://github.com/sevranty/design-director-ops/issues/492
