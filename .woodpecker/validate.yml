@@ -25,6 +25,7 @@ steps:
   - name: project-validation
     image: python:3.12-alpine
     commands:
+      - apk add --no-cache git
       - python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir /tmp/3dp-validation
 
 concurrency: 1
