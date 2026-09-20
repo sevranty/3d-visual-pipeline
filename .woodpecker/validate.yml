@@ -1,0 +1,31 @@
+when:
+  - event: pull_request
+  - event: push
+    branch: ${CI_REPO_DEFAULT_BRANCH}
+
+# 3DP#43: repository-local validation for 3D Visual Pipeline.
+clone:
+  - name: git
+    image: woodpeckerci/plugin-git
+    settings:
+      partial: false
+      depth: 0
+
+steps:
+  - name: repository-integrity
+    image: alpine/git:2.47.2
+    commands:
+      - git diff --check
+      - git fsck --no-progress
+      - test -f README.md
+      - test -f AGENTS.md
+      - test -f skills/3d-visual-pipeline/scripts/validate_all.py
+      - 'test -z "$(git status --porcelain)"'
+
+  - name: project-validation
+    image: python:3.12-alpine
+    commands:
+      - apk add --no-cache git
+      - python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir /tmp/3dp-validation
+
+concurrency: 1
