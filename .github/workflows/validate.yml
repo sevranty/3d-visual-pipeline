@@ -1,10 +1,6 @@
-name: Validate repository
+name: Validate repository (manual fallback)
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
     inputs:
       upload_evidence:
@@ -14,7 +10,7 @@ on:
         type: boolean
 
 concurrency:
-  group: 3dp-validation-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: 3dp-manual-validation-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -26,29 +22,15 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout exact source commit
+      - name: Checkout exact requested ref
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.sha }}
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Validate diff whitespace
-        if: github.event_name == 'pull_request'
-        run: git diff --check "${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }}"
-
       - name: Run complete validation
         run: python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir validation/runtime
-
-      - name: Validate one active PR per TASK_ID
-        if: always() && github.event_name == 'pull_request'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: >-
-          python3 skills/3d-visual-pipeline/scripts/validate_pr_governance.py
-          --event "$GITHUB_EVENT_PATH"
-          --repository "$GITHUB_REPOSITORY"
-          --report validation/runtime/pr-governance.json
 
       - name: Verify clean workspace
         if: always()
@@ -60,9 +42,9 @@ jobs:
           fi
 
       - name: Upload validation evidence
-        if: failure() || (github.event_name == 'workflow_dispatch' && inputs.upload_evidence)
+        if: failure() || inputs.upload_evidence
         uses: actions/upload-artifact@v4
         with:
-          name: 3dp-validation-${{ github.run_id }}
+          name: 3dp-manual-validation-${{ github.run_id }}
           path: validation/runtime/*.json
           if-no-files-found: warn
