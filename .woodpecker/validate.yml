@@ -3,7 +3,7 @@ when:
   - event: push
     branch: ${CI_REPO_DEFAULT_BRANCH}
 
-# 3DP#43: repository-local validation for 3D Visual Pipeline.
+# 3DP#46: Woodpecker is the primary automatic validation contour.
 clone:
   - name: git
     image: woodpeckerci/plugin-git
@@ -15,11 +15,21 @@ steps:
   - name: repository-integrity
     image: alpine/git:2.47.2
     commands:
-      - git diff --check
+      - |
+        if [ -n "${CI_COMMIT_PULL_REQUEST:-}" ]; then
+          target="${CI_COMMIT_TARGET_BRANCH:-main}"
+          git fetch origin "$target"
+          git diff --check "origin/$target...HEAD"
+        elif git rev-parse HEAD^ >/dev/null 2>&1; then
+          git diff --check HEAD^..HEAD
+        else
+          git diff --check
+        fi
       - git fsck --no-progress
       - test -f README.md
       - test -f AGENTS.md
       - test -f skills/3d-visual-pipeline/scripts/validate_all.py
+      - test -f skills/3d-visual-pipeline/scripts/validate_pr_governance_woodpecker.py
       - 'test -z "$(git status --porcelain)"'
 
   - name: project-validation
@@ -27,5 +37,18 @@ steps:
     commands:
       - apk add --no-cache git
       - python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir /tmp/3dp-validation
+
+  - name: pr-governance
+    image: python:3.12-alpine
+    commands:
+      - |
+        if [ -n "${CI_COMMIT_PULL_REQUEST:-}" ]; then
+          python3 skills/3d-visual-pipeline/scripts/validate_pr_governance_woodpecker.py \
+            --repository sevranty/3d-visual-pipeline \
+            --pr-number "${CI_COMMIT_PULL_REQUEST}" \
+            --report /tmp/3dp-pr-governance.json
+        else
+          echo "[SKIP] pr-governance: not a pull request"
+        fi
 
 concurrency: 1
