@@ -3,7 +3,7 @@ when:
   - event: push
     branch: ${CI_REPO_DEFAULT_BRANCH}
 
-# 3DP#46: Woodpecker is the primary automatic validation contour.
+# 3DP-046 / Issue #46: Woodpecker is the primary automatic validation contour.
 clone:
   - name: git
     image: woodpeckerci/plugin-git
