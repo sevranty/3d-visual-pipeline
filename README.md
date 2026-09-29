@@ -60,15 +60,15 @@ Every request must declare inputs, reference roles, locks, stop conditions and v
 
 ## Validation
 
-One local command matches the GitHub Actions validation set:
+One local command matches the primary repository validation set:
 
 ```bash
 python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir validation/runtime
 ```
 
-The hosted workflow uses one read-only `validate` job. Pull Request updates run only through `pull_request`; `push` validation is limited to `main`, and `workflow_dispatch` remains available for exact-ref checks. The native `Validate repository / validate` check is canonical; the workflow does not publish a duplicate custom commit status. Successful automatic runs upload no artifact, while failed runs and requested manual runs retain compact JSON evidence.
+Woodpecker is the primary automatic validation contour. Pull Requests and pushes to the default branch run `.woodpecker/validate.yml`, including repository integrity, the complete validation set and Pull Request governance. `.github/workflows/validate.yml` is retained only as a manually dispatched fallback and has no automatic `pull_request`, `push` or `schedule` trigger.
 
-Release `v1.0.0` was validated from its annotated immutable tag. The tag object, peeled commit, clean-checkout result and public GitHub Release facts are recorded in `release/1.0.0/validation-manifest.json` and `validation/3dp-008-v1.0.0-release-evidence.json`.
+Release `v1.0.0` predates this cutover and was validated with the historical native GitHub Actions check `Validate repository / validate`. Its immutable tag, peeled commit, clean-checkout result and public GitHub Release facts remain recorded in `release/1.0.0/validation-manifest.json` and `validation/3dp-008-v1.0.0-release-evidence.json`.
 
 ## Governance
 
