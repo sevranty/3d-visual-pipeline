@@ -80,10 +80,18 @@ class WorkflowContractTests(unittest.TestCase):
         ):
             self.assertNotIn(forbidden, self.github_workflow)
 
-    def test_manual_fallback_checkout_is_read_only(self):
-        self.assertIn("cancel-in-progress: true", self.github_workflow)
-        self.assertIn("ref: ${{ github.sha }}", self.github_workflow)
+    def test_manual_fallback_requires_and_proves_exact_sha(self):
+        self.assertIn("exact_sha:", self.github_workflow)
+        self.assertIn("required: true", self.github_workflow)
+        self.assertIn("^[0-9a-f]{40}$", self.github_workflow)
+        self.assertIn("ref: ${{ inputs.exact_sha }}", self.github_workflow)
+        self.assertIn(
+            'test "$(git rev-parse HEAD)" = "$EXACT_SHA"',
+            self.github_workflow,
+        )
         self.assertIn("persist-credentials: false", self.github_workflow)
+        self.assertIn("cancel-in-progress: true", self.github_workflow)
+        self.assertNotIn("ref: ${{ github.sha }}", self.github_workflow)
         self.assertNotIn("Publish success status", self.github_workflow)
         self.assertNotIn("Publish failure status", self.github_workflow)
         self.assertNotIn("gh api --method POST", self.github_workflow)

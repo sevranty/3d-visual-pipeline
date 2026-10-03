@@ -3,6 +3,10 @@ name: Validate repository (manual fallback)
 on:
   workflow_dispatch:
     inputs:
+      exact_sha:
+        description: Exact 40-character commit SHA to validate
+        required: true
+        type: string
       upload_evidence:
         description: Upload validation JSON evidence
         required: false
@@ -10,7 +14,7 @@ on:
         type: boolean
 
 concurrency:
-  group: 3dp-manual-validation-${{ github.ref }}
+  group: 3dp-manual-validation-${{ inputs.exact_sha }}
   cancel-in-progress: true
 
 permissions:
@@ -22,12 +26,32 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout exact requested ref
+      - name: Validate exact SHA input
+        shell: bash
+        env:
+          EXACT_SHA: ${{ inputs.exact_sha }}
+        run: |
+          set -euo pipefail
+          [[ "$EXACT_SHA" =~ ^[0-9a-f]{40}$ ]] || {
+            echo "exact_sha must be a lowercase 40-character SHA" >&2
+            exit 2
+          }
+
+      - name: Checkout exact requested commit
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ inputs.exact_sha }}
           fetch-depth: 0
           persist-credentials: false
+
+      - name: Prove exact checkout
+        shell: bash
+        env:
+          EXACT_SHA: ${{ inputs.exact_sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXACT_SHA"
+          test -z "$(git status --porcelain --untracked-files=all)"
 
       - name: Run complete validation
         run: python3 skills/3d-visual-pipeline/scripts/validate_all.py --report-dir validation/runtime
@@ -45,6 +69,6 @@ jobs:
         if: failure() || inputs.upload_evidence
         uses: actions/upload-artifact@v4
         with:
-          name: 3dp-manual-validation-${{ github.run_id }}
+          name: 3dp-manual-validation-${{ inputs.exact_sha }}-${{ github.run_id }}
           path: validation/runtime/*.json
           if-no-files-found: warn
