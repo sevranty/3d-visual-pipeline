@@ -42,7 +42,7 @@ def validate_request(request: dict[str, Any]) -> None:
         raise PresentoAdapterError("unsupported_version", "expected 1.0.0")
     if request["provider_id"] != PROVIDER_ID:
         raise PresentoAdapterError("unsupported_provider", "expected 3dp")
-    if request["asset_kind"] not in ASSET_KINDS:
+    if not isinstance(request["asset_kind"], str) or request["asset_kind"] not in ASSET_KINDS:
         raise PresentoAdapterError("unsupported_capability", "raster-image or 3d-render required")
     if not isinstance(request["request_id"], str) or not request["request_id"].strip():
         raise PresentoAdapterError("invalid_request", "request_id is required")
