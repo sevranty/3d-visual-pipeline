@@ -36,3 +36,20 @@ Score meaning 25, preservation 20, style 20, composition 15, geometry 10, and te
 - `references/asset-governance.md`
 - `references/diagnostic-codes.md`
 - `references/output-delivery.md`
+
+## Optional Presento asset-provider boundary
+
+After 3DP generation, visual QA and output finalization, a caller may explicitly
+export an already accepted local PNG/JPEG render through the offline Presento
+request/result v1 adapter: `scripts/presento_adapter.py`. This is not part of
+the mandatory generation sequence and never invokes generation itself.
+
+- Supported Presento kinds: `raster-image` and `3d-render`.
+- Caller supplies exact provider revision, accepted asset path/root and trusted SHA-256.
+- Adapter validates version/provider/capability, canonical config digest, asset
+  containment/checksum and detected MIME; refusals have stable error codes.
+- Use `make_executor(...)` for an explicit Presento callback or
+  `result_from_local_asset(...)` for a local result record.
+- Run offline contract tests from `tests/test_presento_adapter.py`.
+- No network, paid generation, credentials, implicit fallback or external
+  repository dependency is introduced.
