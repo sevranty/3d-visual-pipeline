@@ -17,8 +17,8 @@ Issue: 3DP#38
 
 ## Реализованный автономный адаптер
 
-- Код: `skills/3d-visual-pipeline/scripts/presento_adapter.py`.
-- Проверки: `skills/3d-visual-pipeline/tests/test_presento_adapter.py` (10 автономных сценариев).
+- Код: `../../skills/3d-visual-pipeline/scripts/presento_adapter.py`.
+- Проверки: `../../skills/3d-visual-pipeline/tests/test_presento_adapter.py` (10 автономных сценариев).
 - Поддерживаются `raster-image` и `3d-render` из заранее принятого локального PNG/JPEG.
 - `make_executor(...)` возвращает явный Presento callback; `result_from_local_asset(...)` создаёт 13-польный результат v1.
 - Входы: exact provider revision, корень локальных файлов, путь уже принятого результата и ожидаемая SHA-256.
